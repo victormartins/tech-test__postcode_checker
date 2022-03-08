@@ -12,9 +12,13 @@ RSpec.describe PostcodeChecker do
     PostcodeChecker.new
   end
 
-  subject(:http_request) { post('/postcode_lookup', params) }
+  subject(:http_request) { post('/check_postcode', params) }
 
-  describe 'POST /postcode' do
+  before do
+    WebMock.disable!
+  end
+
+  describe 'POST /check_postcode' do
     before { http_request }
 
     POSTCODES_IN_LSOA.each do |postcode|

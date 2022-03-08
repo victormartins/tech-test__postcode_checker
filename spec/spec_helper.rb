@@ -1,14 +1,18 @@
 # frozen_string_literal: true
 
+require 'webmock/rspec'
 require 'pry-byebug'
 require 'rack/test'
 require 'pry'
 
+# TODO: Improve configurations
+ENV['POSTCODE_ALLOWED_LSOA'] = 'Southwark,Lambeth'
+ENV['POSTCODE_IO_LOOKUP_API'] = 'http://postcodes.io/postcodes'
 ENV['RACK_ENV'] = 'test'
 
 require 'postcode_checker'
 
-PostcodeChecker.logger.level = :warn
+PostcodeChecker.logger.level = :error
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

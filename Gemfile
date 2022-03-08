@@ -10,3 +10,5 @@ gem 'rspec'
 gem 'rubocop', '~> 1.25'
 gem 'sinatra', '~> 2.2'
 gem 'sinatra-contrib', '~> 2.2'
+
+gem "webmock", "~> 3.14"
