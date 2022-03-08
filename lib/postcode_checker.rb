@@ -5,6 +5,9 @@ require 'sinatra/json'
 require 'logger'
 
 class PostcodeChecker < Sinatra::Base
+  require_relative 'postcode_checker/check_post_code'
+  require_relative 'postcode_checker/lsoa_checker'
+
   if ENV['RACK_ENV'] == 'test'
     disable :show_exceptions
     enable :raise_errors
