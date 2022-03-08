@@ -2,7 +2,9 @@ require 'pry-byebug'
 require 'rack/test'
 require 'pry'
 
-require 'post_code_finder'
+require 'postcode_checker'
+
+PostcodeChecker.logger.level = :warn
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

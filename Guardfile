@@ -1,4 +1,4 @@
-guard :rspec, cmd: 'clear && bundle exec rspec spec/ --order defined --fail-fast  -f p', all_after_pass: false,
+guard :rspec, cmd: 'clear && bundle exec rspec spec/ --order defined --fail-fast', all_after_pass: false,
               failed_mode: :focus do
   require 'guard/rspec/dsl'
   dsl = Guard::RSpec::Dsl.new(self)
