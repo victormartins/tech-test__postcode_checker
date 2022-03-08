@@ -9,6 +9,9 @@ class PostcodeChecker
 
     def call(postcode)
       postcode_data = lookup_postcode.call(postcode)
+
+      return false unless postcode_data.successful?
+
       lsoa = postcode_data.lsoa
 
       allowed_lsoa.any? do |allowed|

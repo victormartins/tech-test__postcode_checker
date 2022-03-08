@@ -7,7 +7,7 @@ class PostcodeChecker
   # the consumer to any external payload dependencies.
   class LookupPostcode
     Response = Struct.new(
-      :status,
+      :successful?,
       :postcode,
       :lsoa
     )
@@ -24,10 +24,21 @@ class PostcodeChecker
       json_response = JSON.parse(raw_response)
 
       Response.new(
-        json_response['status'],
+        successful?(json_response),
         json_response.dig('result', 'postcode'),
         json_response.dig('result', 'lsoa')
       )
+    rescue StandardError => e
+      PostcodeChecker.logger.error("Failed to lookup postcode! #{e.message}")
+
+      # TODO: Improve error handling. Retry Timeouts
+      Response.new(false)
+    end
+
+    private
+
+    def successful?(json_response)
+      json_response['status'] == 200
     end
   end
 end
