@@ -4,7 +4,12 @@ require 'sinatra'
 require 'sinatra/json'
 require 'logger'
 
-class PostcodeChecker < Sinatra::Application
+class PostcodeChecker < Sinatra::Base
+  if ENV['RACK_ENV'] == 'test'
+    disable :show_exceptions
+    enable :raise_errors
+  end
+
   def self.logger
     @logger ||= Logger.new($stdout)
   end
@@ -12,13 +17,11 @@ class PostcodeChecker < Sinatra::Application
   post '/postcode_lookup' do
     PostcodeChecker.logger.info("Sent Params: #{params}")
 
-    if true #request.valid?
-      # allowed =
-      json(
-        allowed: true,
-        postcode: params.fetch(:postcode)
-      )
-    end
+    allowed = CheckPostcode.new.call(request: request)
 
+    json(
+      allowed: allowed,
+      postcode: params.fetch(:postcode)
+    )
   end
 end

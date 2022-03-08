@@ -1,6 +1,10 @@
+# frozen_string_literal: true
+
 require 'pry-byebug'
 require 'rack/test'
 require 'pry'
+
+ENV['RACK_ENV'] = 'test'
 
 require 'postcode_checker'
 
