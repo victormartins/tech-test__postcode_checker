@@ -13,15 +13,18 @@ class PostcodeChecker < Sinatra::Base
   require_relative 'postcode_checker/lookup_postcode'
   require_relative 'postcode_checker/check_lsoa'
 
-  if ENV['RACK_ENV'] == 'test'
-    disable :show_exceptions
-    enable :raise_errors
-  end
+  disable :show_exceptions
+  enable :raise_errors
 
   error ActiveModel::UnknownAttributeError do |e|
     PostcodeChecker.logger.error("Unauthorized params sent! #{e.message}")
 
     handle_unauthorized_params
+  end
+
+  error 404 do |e|
+    status 404
+    json({})
   end
 
   def self.logger

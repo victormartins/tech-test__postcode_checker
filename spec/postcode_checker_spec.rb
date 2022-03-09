@@ -72,6 +72,17 @@ RSpec.describe PostcodeChecker do
     end
 
     describe 'Error Paths' do
+      describe 'handling 404' do
+        let(:params) { {} }
+
+        it 'returns a 404 code and empty body' do
+          post '/check'
+
+          expect(last_response.status).to be(404)
+          expect(last_response.body).to eql('{}')
+        end
+      end
+
       describe 'with invalid params' do
         context 'when the postcode is missing' do
           let(:params) { {} }
