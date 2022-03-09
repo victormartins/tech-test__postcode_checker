@@ -27,4 +27,3 @@ class PostcodeChecker
     end
   end
 end
-

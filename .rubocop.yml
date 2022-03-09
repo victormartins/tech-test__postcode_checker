@@ -4,6 +4,9 @@ AllCops:
 Metrics/MethodLength:
   Max: 50
 
+Metrics/AbcSize:
+  Max: 20
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
@@ -14,10 +17,6 @@ Style/StringLiterals:
 
 Style/Documentation:
   Enabled: false
-
-Style/EmptyMethod:
-  Exclude:
-    - 'lib/underground_system.rb'
 
 Style/FrozenStringLiteralComment:
   Exclude:

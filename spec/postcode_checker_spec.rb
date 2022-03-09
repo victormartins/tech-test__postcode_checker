@@ -12,7 +12,7 @@ POSTCODES_WHITELISTED = [
 
 POSTCODES_NOT_ALLOWED = [
   'SN4 0PW',
-  'XXX XXX'
+  'SH24 1AC'
 ].freeze
 
 POSTCODES_ALLOWED = POSTCODES_IN_LSOA + POSTCODES_WHITELISTED
@@ -72,9 +72,60 @@ RSpec.describe PostcodeChecker do
     end
 
     describe 'Error Paths' do
-      context 'with invalid params' do
-        it 'returns 422'
-        it 'returns an error message'
+      describe 'with invalid params' do
+        context 'when the postcode is missing' do
+          let(:params) { {} }
+
+          it 'returns 422' do
+            expect(last_response.status).to be(422)
+          end
+
+          it 'returns a not allowed postcode response with errors' do
+            json_response = JSON.parse(last_response.body)
+
+            expect(json_response).to match(
+              'postcode' => '',
+              'allowed' => false,
+              'errors' => ["Postcode can't be blank"]
+            )
+          end
+        end
+
+        context 'when the postcode is invalid' do
+          let(:params) { { postcode: 'XX' } }
+
+          it 'returns 422' do
+            expect(last_response.status).to be(422)
+          end
+
+          it 'returns a not allowed postcode response with errors' do
+            json_response = JSON.parse(last_response.body)
+
+            expect(json_response).to match(
+              'postcode' => 'XX',
+              'allowed' => false,
+              'errors' => ['Postcode invalid format!']
+            )
+          end
+        end
+
+        context 'when unauthorized params are sent' do
+          let(:params) { { unkonwn: 'XX' } }
+
+          it 'returns 422' do
+            expect(last_response.status).to be(422)
+          end
+
+          it 'returns a not allowed postcode response with errors' do
+            json_response = JSON.parse(last_response.body)
+
+            expect(json_response).to match(
+              'postcode' => '',
+              'allowed' => false,
+              'errors' => ['Unauthorized Params Sent!']
+            )
+          end
+        end
       end
     end
   end
