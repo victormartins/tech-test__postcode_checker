@@ -5,11 +5,6 @@ require 'pry-byebug'
 require 'rack/test'
 require 'pry'
 
-# TODO: Improve configurations
-ENV['POSTCODES_WHITELISTED'] = 'SH24 1AA,SH24 1AB'
-ENV['POSTCODE_ALLOWED_LSOA'] = 'Southwark,Lambeth'
-ENV['POSTCODE_IO_LOOKUP_API'] = 'http://postcodes.io/postcodes'
-
 require 'postcode_checker'
 
 PostcodeChecker.logger.level = :error

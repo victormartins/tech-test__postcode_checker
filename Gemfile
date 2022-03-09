@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 ruby '3.0.0'
 
+gem 'activemodel', '~> 7.0'
+gem 'dotenv', '~> 2.7'
 gem 'guard-rspec', '~> 4.7'
 gem 'pry-byebug', '~> 3.8'
 gem 'puma', '~> 5.6'
@@ -10,7 +12,4 @@ gem 'rspec'
 gem 'rubocop', '~> 1.25'
 gem 'sinatra', '~> 2.2'
 gem 'sinatra-contrib', '~> 2.2'
-
-gem "webmock", "~> 3.14"
-
-gem "activemodel", "~> 7.0"
+gem 'webmock', '~> 3.14'
