@@ -44,7 +44,7 @@ GEM
     method_source (1.0.0)
     minitest (5.15.0)
     multi_json (1.15.0)
-    mustermann (1.1.1)
+    mustermann (2.0.2)
       ruby2_keywords (~> 0.0.1)
     nenv (0.3.0)
     nio4r (2.5.8)
@@ -63,8 +63,8 @@ GEM
     public_suffix (4.0.6)
     puma (5.6.2)
       nio4r (~> 2.0)
-    rack (2.2.3)
-    rack-protection (2.2.0)
+    rack (2.2.4)
+    rack-protection (2.2.3)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -101,19 +101,19 @@ GEM
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     shellany (0.0.1)
-    sinatra (2.2.0)
-      mustermann (~> 1.0)
+    sinatra (2.2.3)
+      mustermann (~> 2.0)
       rack (~> 2.2)
-      rack-protection (= 2.2.0)
+      rack-protection (= 2.2.3)
       tilt (~> 2.0)
-    sinatra-contrib (2.2.0)
+    sinatra-contrib (2.2.3)
       multi_json
-      mustermann (~> 1.0)
-      rack-protection (= 2.2.0)
-      sinatra (= 2.2.0)
+      mustermann (~> 2.0)
+      rack-protection (= 2.2.3)
+      sinatra (= 2.2.3)
       tilt (~> 2.0)
     thor (1.2.1)
-    tilt (2.0.10)
+    tilt (2.0.11)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
@@ -124,6 +124,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   activemodel (~> 7.0)
